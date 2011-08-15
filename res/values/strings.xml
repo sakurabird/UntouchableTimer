@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">UntouchableTimer</string>
+	<string name="app_version">1.0</string>
+	<string name="app_release">2011-07-17</string>
+	<string name="app_author">よちよちAndroidサンデープログラミングの会 </string>
+	<string name="app_author_mail">https://sites.google.com/site/beginandroid2011/
+	</string>
+	<string name="app_dlg_format">Version: %1$s\nRelease: %2$s\n\nPresented by
+		%3$s\n\t&lt;%4$s&gt;</string>
+
+	<string name="pref_cattitle_sound">音とバイブレーションの設定</string>
+	<string name="pref_title_sound">アラーム音の種類</string>
+	<string name="pref_summary_sound">アラームの種類を設定します</string>
+	<string name="pref_title_vibrator">バイブレーション</string>
+	<string name="pref_summary_vibrator">アラーム鳴動時のバイブレーションのON/OFFを切り替えます</string>
+	<string name="pref_title_sensor_sensitibity">センサー感度の設定</string>
+	<string name="pref_summary_sensor_sensitibity">センサーの感度を入力して下さい（例：3.0）この値を小さく設定するとかなり接近しないとセンサーが反応しないことがあります。
+	</string>
+	<string name="pref_dialogtitle_sensor_sensitibity">センサー感度の設定</string>
+
+	<string name="message_timeup">時間です!</string>
+	<string name="message_waiting">電話を手に近づけて、振動したら一呼吸置いて、話してください</string>
+	<string name="message_timer_start">タイマーをスタートします・・・</string>
+	<string name="message_cancel">タイマーをキャンセルする場合は端末に手を近づけてください</string>
+	<string name="message_Alarm_Stop">アラームをストップする場合は端末に手を近づけてください</string>
+	<string name="message_talk_to_phone">タイマーにセットする時間をお話下さい。（５秒・１分３０秒・９０秒のように話しかけて下さい）
+	</string>
+	<string name="message_wait_sensor_changed">センサーが認識しました・・・</string>
+	<string name="message_wait_recognize">音声受信中・・・</string>
+	<string name="message_wait_analyze">音声解析中・・・</string>
+
+	<string name="message_error_recognize">認識出来ませんでした。もう一度端末にお話下さい。</string>
+	<string name="message_error_analyze">解析出来ませんでした。もう一度端末にお話下さい。</string>
+	<string name="message_error_no_sensor">この端末には近接センサーが無いようですので本アプリは作動いたしません。</string>
+	<string name="message_error_network">インターネットにつながるようにしてから、アプリを再度起動してください。</string>
+	<string name="message_no_voice_recognition">音声認識アプリがインストールされていないようです</string>
+	<string name="message_no_webbrowser">Webブラウザがインストールされていないようです</string>
+	<string name="message_no_mailer">メールアプリがインストールされていないようです</string>
+
+	<string name="menu_title_setting">設定</string>
+	<string name="menu_title_help">使い方</string>
+	<string name="menu_title_about">アプリについて</string>
+	<string name="menu_title_sensor_sensitivity">センサー感度表示</string>
+
+
+	<string name="message_sensorcheck_title1">近接センサーの感度を表示する画面です</string>
+	<string name="message_sensorcheck_text1">設定されたセンサーの感度：</string>
+	<string name="message_sensorcheck_text2">現在のセンサーの値：</string>
+	<string name="message_sensorcheck_text3">
+	近接センサーの感度は端末によって異なります。センサーに手を近づけたり遠ざけたりしてみて下さい。
+	内部の値が「現在のセンサーの値」に表示されます。
+	当アプリは「現在のセンサーの値」＜＝「設定されたセンサーの感度」の場合に
+	センサーが反応したとみなしております。
+	「設定されたセンサーの感度」は「メニュー」の「設定」を開いて「センサー感度の設定」にて
+	設定できます。</string>
+	<string name="message_sensorcheck_ok">センサーが反応しました！</string>
+	<string name="message_sensorcheck_ng">センサーは反応していません。感度の設定を見直してみてください。</string>
+
+	<string name="button_first_lanch_next">アンタッチャブルタイマーへ</string>
+
+	<string name="message_first_lanch_title1">アンタッチャブルタイマーインストールありがとうございます！</string>
+	<string name="message_first_lanch1">
+		\n
+		このアプリは話しかけた言葉を解析して、タイマーの時間をセットします。\n
+		アプリの使い方は、メニューを開いていただいて「使い方」を選んでいただければいつでもご覧になれます。\n\n
+	</string>
+	<string name="message_first_lanch_title2">タイマーをセット／キャンセルする</string>
+	<string name="message_first_lanch2">
+	端末の近接センサー（端末上部が多いです）に手などを近づけます。合図音とバイブレーションしたら
+	セットしたい時間を話しかけてください。
+	</string>
+	<string name="message_first_lanch_title3">ご注意</string>
+	<string name="message_first_lanch3">
+	環境の音に反応してタイマーがセットされることがありますので
+	起動後、あまり放置していただかない方が良いと思います。
+	</string>
+	
+	<string name="message_help_title1">アンタッチャブルタイマーのヘルプ</string>
+	<string name="message_help_title_summary1">使い方</string>
+	<string name="message_help_text1">
+		※端末の通信機能をオンに設定してインターネットに繋がるようにして下さい。\n\n
+		1.アプリを起動するとタイマー画面が表示されます。
+		画面下部のバーは合図音とアラーム音のボリュームを設定します。\n\n
+		2.端末に手を近づけて下さい。\n
+		近接センサーは電話を耳に付ける付近にあることが多いようです。\n\n
+		3.近接センサーが反応すると、端末が振動しますので
+		少し間を開けてから、タイマーにセットしたい時間を電話に向かってお話下さい。\n
+		時間は「100秒」、「5分30秒」、「1分」などとはっきり発音して下さい。\n\n
+		4.音声が正しく認識されるとタイマーが起動します。\n
+		認識に失敗した場合や、思ったのと違う時間がセットされてしまったら、
+		もう一度端末に手を近づけてやり直して下さい。\n
+		騒音の多い場所だと誤認識が増えてしまうことがあるようです。\n\n
+		5.タイマーのアラームを停止するには、もう一度端末に手を近づけて下さい。\n\n
+		6.アンタッチャブルタイマーを終了するには、端末の戻るキーを押してください。
+	</string>
+	<string name="message_help_title_summary2">ご注意</string>
+	<string name="message_help_text2">
+		本タイマーは、ホームボタンなどを押して別のアプリを使うなどしていても着々とカウントダウンをし続けて
+		時間が来ればアラームが作動します。\n
+		あまりにも長い時間をセットするとタイマーセットしたこと自体を忘れてしまい、思わぬアラームが鳴って驚くという状況
+		も十分ございますので、くれぐれもご注意下さい。\n
+		また、環境の音に反応して解析結果が秒に変換できてしまった場合タイマーがセットされてしまいますので
+		起動後、あまり放置していただかない方が良いと思います。
+	</string>
+	<string name="message_help_title_summary3">メニューを開く</string>
+	<string name="message_help_text3">
+		端末の「メニュー」キーを押すと、メニューが表示されます。\n
+		各メニュー項目をタッチすると
+		別の画面やダイアログが表示されます。\n
+		各メニュー項目については、以下をご覧下さい。\n
+		\n
+		◆設定◆\n\n
+		アラーム音とバイブレーションの設定をします。\n
+		アラーム音のところを押すといくつかのアラーム音候補が表示されます。\n
+		選択したいアラーム音を押してください。\n
+		この画面を閉じるには、、端末の戻るキーを押してください。\n\n
+		バイブレーションのチェックボックスを押すと\n
+		アラーム鳴動時にバイブレーションのON/OFFを設定できます。\n
+		\n
+		◆使い方◆\n\n
+		アプリの使い方（この画面です）を表示します。\n
+		この画面を閉じるには、、端末の戻るキーを押してください。\n\n
+		\n
+		◆アプリについて◆\n\n
+		アプリのバージョン、リリース日、
+		よちよちAndroidサンデープログラミングの会
+		のホームページへのリンクが記載されたダイアログが表示されます。\n
+		ダイアログを閉じるには、、端末の戻るキーを押してください。
+		\n
+		◆センサー感度表示◆\n\n
+		近接センサーの感度を表示します。\n
+		この画面を閉じるには、、端末の戻るキーを押してください。
+	</string>
+	<string name="message_help_title_summary4">動作環境</string>
+	<string name="message_help_text4">
+		本アプリは、Android2.2以上で動作します。Android2.2(SHARP
+		IS03)搭載端末で動作確認しています。\n
+		端末に、近接センサー、バイブレーター機能が搭載されている必要があります。\n
+		端末にGoogle音声入力がインストールされている必要があります。
+	</string>
+	<string name="message_help_title2">Developed by よちよちAndroidサンデープログラミングの会</string>
+</resources>

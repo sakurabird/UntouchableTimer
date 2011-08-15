@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="@string/pref_cattitle_sound">
+		<ListPreference
+			android:title="@string/pref_title_sound"
+			android:summary="@string/pref_summary_sound"
+			android:key="@string/pref_key_sound"
+			android:entries="@array/entries"
+			android:entryValues="@array/entryValues"
+			android:dialogTitle="@string/pref_title_sound"
+			android:defaultValue="2" />
+		<CheckBoxPreference
+			android:title="@string/pref_title_vibrator"
+			android:summary="@string/pref_summary_vibrator"
+			android:key="@string/pref_key_vibrator"
+			android:defaultValue="true">
+		</CheckBoxPreference>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/pref_title_sensor_sensitibity">
+		<EditTextPreference
+			android:title="@string/pref_title_sensor_sensitibity"
+			android:summary="@string/pref_summary_sensor_sensitibity"
+			android:key="@string/pref_key_sensor_sensitivity"
+			android:dialogTitle="@string/pref_dialogtitle_sensor_sensitibity"
+			android:inputType="numberDecimal"
+			android:defaultValue="3.0"
+			>
+		</EditTextPreference>
+	</PreferenceCategory>
+</PreferenceScreen>

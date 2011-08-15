@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:padding="10dip">
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/message_sensorcheck_title1"
+		android:padding="10dip"
+		android:textSize="15dip"
+		android:includeFontPadding="true"
+		android:gravity="center"
+		android:background="@color/color_basic3"
+		android:textColorHighlight="@color/color_basic1"
+		android:textColor="@color/color_black" />
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dip"
+		android:text="@string/message_sensorcheck_text3" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="10dip">
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/message_sensorcheck_text1" />
+		<TextView
+			android:id="@+id/pref_Sensor_Sensitivity"
+			android:textStyle="bold"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content" />
+	</LinearLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingTop="10dip">
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/message_sensorcheck_text2" />
+		<TextView
+			android:id="@+id/Sensor_Sensitivity"
+			android:textSize="30sp"
+			android:textStyle="bold"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_gravity="center" />
+	</LinearLayout>
+	<TextView
+		android:id="@+id/message"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:paddingTop="10dip"
+		android:textSize="15dip" />
+</LinearLayout>

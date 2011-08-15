@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style
+		name="CustomTheme.light"
+		parent="@android:style/Theme.Light">
+
+		<item name="android:windowTitleBackgroundStyle">
+			@style/WindowTitleBackground
+		</item>
+		<item name="android:windowTitleStyle">@style/WindowTitle</item>
+		<item name="android:windowTitleSize">50dip</item>
+	</style>
+
+	<style name="WindowTitleBackground">
+		<item name="android:background">@drawable/title_bar</item>
+	</style>
+
+	<style name="WindowTitle">
+		<item name="android:singleLine">true</item>
+		<item name="android:textAppearance">
+			@style/TextAppearance.WindowTitle
+		</item>
+		<item name="android:shadowColor">#BB000000</item>
+		<item name="android:shadowRadius">2.75</item>
+	</style>
+
+	<style
+		name="TextAppearance.WindowTitle"
+		parent="@android:style/TextAppearance.WindowTitle">
+		<item name="android:textColor">@color/color_white</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+</resources>

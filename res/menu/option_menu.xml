@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:title="@string/menu_title_setting"
+		android:id="@+id/menu_setting"
+		android:orderInCategory="1"
+		android:icon="@android:drawable/ic_menu_preferences"></item>
+	<item
+		android:title="@string/menu_title_help"
+		android:id="@+id/menu_help"
+		android:orderInCategory="2"
+		android:icon="@android:drawable/ic_menu_help"></item>
+	<item
+		android:title="@string/menu_title_about"
+		android:id="@+id/menu_about"
+		android:icon="@android:drawable/ic_menu_info_details"
+		android:orderInCategory="3"></item>
+	<item
+		android:title="@string/menu_title_sensor_sensitivity"
+		android:id="@+id/menu_sensor_sensitivity"
+		android:icon="@android:drawable/ic_menu_directions"
+		android:orderInCategory="4"></item>
+</menu>

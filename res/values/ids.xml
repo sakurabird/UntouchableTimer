@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_key_sound">sound</string>
+    <string name="pref_key_vibrator">vibrator</string>
+	<string name="pref_key_sensor_sensitivity">sensor</string>
+</resources>
