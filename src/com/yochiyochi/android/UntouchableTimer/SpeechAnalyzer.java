@@ -28,8 +28,7 @@ public class SpeechAnalyzer
 	public static final int COMMAND_START = 2;	// 音声コマンド「開始」
 
 	// 音声認識結果の文字列リストからコマンドを取得する
-	public static int speechToCommand(ArrayList<String> strList)
-	{
+	public static int speechToCommand(ArrayList<String> strList) {
 		final String regCommand[] = {
 				"中止|中断|戻る|キャンセル|キャンプ|cancel|だめ|もう1回|もいっかい",
 				"停止|定期|天使|ac|終了|資料|終わり|止まれ|やめて|うるさい|うざい|ストップ|スタバ|ラップ|トップ|stop|dap",
@@ -44,21 +43,18 @@ public class SpeechAnalyzer
 	}
 
 	// 音声認識結果の文字列リストから最適な秒数値を取得する
-	public static int speechToSecond(ArrayList<String> strList)
-	{
+	public static int speechToSecond(ArrayList<String> strList) {
 		return getSecond(getCandidate(strList), USE_MUNITE_IF_NO_UNIT);	// 文字列が数値のみの場合の単位の指定が無かった場合は、デフォルトとして「分」を使う
 	}
 
 	// 音声認識結果の文字列リストから最適な秒数値を取得する (デフォルトの単位を指定する場合)
-	public static int speechToSecond(ArrayList<String> strList, int unit)
-	{
+	public static int speechToSecond(ArrayList<String> strList, int unit) {
 		return getSecond(getCandidate(strList), unit);
 	}
 	
 	// 文字列から秒数値を取得する
 	// 本当は private でよいが、TestTextToSecond サンプルアプリではキー入力の文字列を秒数値に変換しているので、呼び出し可能にしている
-	private static int getSecond(String str, int unit)
-	{
+	private static int getSecond(String str, int unit) {
     	Matcher mch;
 
     	str = kanjiToAlabic(str);	// 漢数字、全角数字を変換する
@@ -90,8 +86,7 @@ public class SpeechAnalyzer
 
 	// 文字列リストの中から、時間情報として適切なものを取得する
 	// 本当は private でよいが、TestTextToSecond サンプルアプリでは時間情報を取得した文字列を表示しているので、呼び出し可能にしている
-	private static String getCandidate(ArrayList<String> strList)
-	{
+	private static String getCandidate(ArrayList<String> strList) {
 		// 漢数字、全角数字置換のため作業用文字列リストを作成
 		ArrayList<String> tmpList = new ArrayList<String>();
 		for(int i = 0; i < strList.size(); i++)
@@ -145,8 +140,7 @@ public class SpeechAnalyzer
 */
 	
 	// 文字列がもろに時間情報にマッチしたら true を返す
-	private static boolean isExactHMS(String str)
-	{
+	private static boolean isExactHMS(String str) {
 		if(str != null && !str.equals(""))
 			if(Pattern.compile("^\\s*("+regexNum+"\\s*"+regexExactHMS[0]+")?\\s*("+regexNum+"\\s*"+regexExactHMS[1]+")?\\s*("+regexNum+"\\s*"+regexExactHMS[2]+")?\\s*$").matcher(str).find())
 				return true;
@@ -154,8 +148,7 @@ public class SpeechAnalyzer
 	}
 
 	// 多少誤認識があるが、時間情報らしきものがあれば true を返す
-	private static boolean isHMS(String str)
-	{
+	private static boolean isHMS(String str) {
 		if(str != null && !str.equals(""))
 			if(Pattern.compile(regexNum+regexHMS[0]).matcher(str).find())
 				return true;
@@ -167,8 +160,7 @@ public class SpeechAnalyzer
 	}
 	
 	// 文字列が数値のみで構成されていたら、その値 を返す、数値のみでなければ -1 を返す
-	private static int valueOf(String str)
-	{
+	private static int valueOf(String str) {
 		if(str != null && !str.equals(""))
 		{
 			Matcher mch = Pattern.compile("^\\s*"+regexNum+"\\s*$").matcher(str);
@@ -179,8 +171,7 @@ public class SpeechAnalyzer
 	}
 	
 	// 文字列に数値を含むなら true を返す
-	private static boolean isContainNum(String str)
-	{
+	private static boolean isContainNum(String str) {
 		if(str != null && !str.equals(""))
 			if(Pattern.compile(regexNum).matcher(str).find())
 				return true;
@@ -189,15 +180,13 @@ public class SpeechAnalyzer
 	
 	// 漢数字や全角数字を半角数字に変換した結果を返す
 	// 本当は private でよい。デバッグ用に public
-	private static String kanjiToAlabic(String str)
-	{
+	private static String kanjiToAlabic(String str) {
 		final String regexKanNum[] = { "零|０", "一|１", "二|２", "三|３", "四|４", "五|５", "六|６", "七|７", "八|８", "九|９" };
 		final String regexKanUnit[] = { "", "十", "百", "千", "万" };	// 桁を表す文字。まあ、万まであればいいでしょ。ただし1文字だけね。
 		Matcher mch, mchN;
 		StringBuffer strBuf = new StringBuffer();
 		
-		if(str != null && !str.equals(""))
-		{
+		if(str != null && !str.equals("")) {
 			// まず単純に数字を半角数字にする
 			for(int i = 0; i < regexKanNum.length; i++)
 				str = str.replaceAll(regexKanNum[i], Integer.valueOf(i).toString());
@@ -216,8 +205,7 @@ public class SpeechAnalyzer
 			mch.appendTail(strBuf);
 			str = strBuf.toString();
 			// 数字の右に単位が付いているものは、その単位の数値と考えて「/数値/」という文字列に置き換える
-			for(int i = 1; i < regexKanUnit.length; i++)
-			{
+			for(int i = 1; i < regexKanUnit.length; i++) {
 				strBuf.setLength(0);
 				mch = Pattern.compile("("+regexNum+")"+regexKanUnit[i]).matcher(str);
 				while(mch.find())
@@ -233,8 +221,7 @@ public class SpeechAnalyzer
 			// 最後に数値を統合する
 			strBuf.setLength(0);
 			mch = Pattern.compile("(/"+regexNum+"/)+").matcher(str);
-			while(mch.find())
-			{
+			while(mch.find()) {
 				int num = 0;
 				mchN = Pattern.compile("/("+regexNum+")/").matcher(mch.group());
 				while(mchN.find())
