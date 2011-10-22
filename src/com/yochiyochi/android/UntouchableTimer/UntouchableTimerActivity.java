@@ -113,7 +113,7 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         // プリファレンスの値を読み込む
         loadSetting();
 
-        // アラーム音量
+        // 音量
         am = ( AudioManager ) getSystemService( Context.AUDIO_SERVICE );
         int ringVolume = am.getStreamVolume( AudioManager.STREAM_MUSIC ); // 音量の取得
         ringVolSeekBar = ( SeekBar ) findViewById( R.id.ringVolSeekBar ); // 音量シークバー
@@ -125,21 +125,19 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         ringVolSeekBar.setProgress( ringVolume ); // 音量をSeekBarにセット
 
         ringVolSeekBar.setOnSeekBarChangeListener( new OnSeekBarChangeListener() {
+
             public void onProgressChanged( SeekBar seekBar, int progress, boolean fromUser ) {
-                // TODO Auto-generated method stub
                 ringVolText.setText( "Volume:" + progress ); // TextViewに設定値を表示
                 am.setStreamVolume( AudioManager.STREAM_MUSIC, progress, 0 ); // 着信音量設定
                 ringVolSeekBar.setProgress( progress ); // 音量をSeekBarにセット
             }
 
+            @Override
             public void onStartTrackingTouch( SeekBar seekBar ) {
-                // TODO Auto-generated method stub
-
             }
 
+            @Override
             public void onStopTrackingTouch( SeekBar seekBar ) {
-                // TODO Auto-generated method stub
-
             }
         } );
 
@@ -150,10 +148,13 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         if ( sensors.size() > 0 ) {
             // センサーリスナー開始
             Sensor sensor = sensors.get( 0 );
-            hasSensor = sensorMgr.registerListener( this, sensor, SensorManager.SENSOR_DELAY_NORMAL );
+            hasSensor = sensorMgr
+                            .registerListener( this, sensor, SensorManager.SENSOR_DELAY_NORMAL );
         } else {
             // 近接センサーがついていないので、Toastでメッセージを出し、アプリを終了
-            Toast.makeText( UntouchableTimerActivity.this, getResources().getText( R.string.message_error_no_sensor ), Toast.LENGTH_SHORT ).show();
+            Toast.makeText( UntouchableTimerActivity.this,
+                            getResources().getText( R.string.message_error_no_sensor ),
+                            Toast.LENGTH_LONG ).show();
             finish();
         }
     }
@@ -174,7 +175,6 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
         super.onDestroy();
 
         // センサーリスナー終了
@@ -198,7 +198,6 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
 
     @Override
     public boolean onCreateOptionsMenu( Menu menu ) {
-        // TODO Auto-generated method stub
 
         super.onCreateOptionsMenu( menu );
         MenuInflater inflater = getMenuInflater();
@@ -254,7 +253,6 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
                 sensorcatch.setOnCompletionListener( new OnCompletionListener() {
 
                     public void onCompletion( MediaPlayer mp ) {
-                        // TODO Auto-generated method stub
                         // 音声認識スタート
                         startSpeechRecognizer();
                     }
@@ -302,18 +300,21 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         Log.d( TAG, "loadSetting pref_version=" + pref_version );
 
         // メニュー設定項目（サウンド・バイブレーション）
-        pref_sound = pref.getString( ( String ) getResources().getText( R.string.pref_key_sound ), "" );
-        if ( pref_sound == null )
+        pref_sound = pref.getString( ( String ) getResources().getText( R.string.pref_key_sound ),
+                        "" );
+        if ( ( pref_sound == null ) || ( pref_sound.equals( "" ) ) ) {
             pref_sound = "2";
-        else if ( pref_sound.equals( "" ) )
-            pref_sound = "2";
+        }
         // String[] sounds = getResources().getStringArray(R.array.entries);
         // //これが選ばれしサウンド
         // String selected_sound = sounds[Integer.parseInt(pref_sound) - 1];
-        pref_vibrator = pref.getBoolean( ( String ) getResources().getText( R.string.pref_key_vibrator ), true );
+        pref_vibrator = pref.getBoolean(
+                        ( String ) getResources().getText( R.string.pref_key_vibrator ), true );
 
         // 近接センサーの閾値
-        String ps = pref.getString( ( String ) getResources().getText( R.string.pref_key_sensor_sensitivity ), "3.0" );
+        String ps = pref.getString(
+                        ( String ) getResources().getText( R.string.pref_key_sensor_sensitivity ),
+                        "3.0" );
         pref_Sensor_Sensitivity = Float.parseFloat( ps );
     }
 
@@ -332,11 +333,13 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
 
         // メニュー設定項目（サウンド・バイブレーション）
         edt.putString( ( String ) getResources().getText( R.string.pref_key_sound ), pref_sound );
-        edt.putBoolean( ( String ) getResources().getText( R.string.pref_key_vibrator ), pref_vibrator );
+        edt.putBoolean( ( String ) getResources().getText( R.string.pref_key_vibrator ),
+                        pref_vibrator );
 
         // 近接センサーの閾値
         String ps = Float.toString( pref_Sensor_Sensitivity );
-        edt.putString( ( String ) getResources().getText( R.string.pref_key_sensor_sensitivity ), ps );
+        edt.putString( ( String ) getResources().getText( R.string.pref_key_sensor_sensitivity ),
+                        ps );
 
         edt.commit();
     }
@@ -352,7 +355,8 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         String versionName = prefix;
         PackageManager pm = context.getPackageManager();
         try {
-            PackageInfo info = pm.getPackageInfo( context.getPackageName(), PackageManager.GET_META_DATA );
+            PackageInfo info = pm.getPackageInfo( context.getPackageName(),
+                            PackageManager.GET_META_DATA );
             versionName += info.versionName;
         } catch ( NameNotFoundException e ) {
             versionName += "0";
@@ -396,13 +400,19 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         TextView t = new TextView( this );
 
         t.setAutoLinkMask( Linkify.EMAIL_ADDRESSES | Linkify.WEB_URLS );
-        t.setText( String.format( ( String ) getResources().getText( R.string.app_dlg_format ), getResources().getText( R.string.app_version ), getResources().getText( R.string.app_release ), getResources().getText( R.string.app_author ), getResources().getText( R.string.app_author_mail ) ) );
+        t.setText( String.format( ( String ) getResources().getText( R.string.app_dlg_format ),
+                        getResources().getText( R.string.app_version ),
+                        getResources().getText( R.string.app_release ),
+                        getResources().getText( R.string.app_author ),
+                        getResources().getText( R.string.app_author_mail ) ) );
 
         t.setTextSize( 18f );
         t.setTextColor( 0xFFCCCCCC );
         t.setLinkTextColor( 0xFF9999FF );
         t.setPadding( 20, 8, 20, 8 );
-        AlertDialog.Builder dlg = new AlertDialog.Builder( this ).setTitle( getResources().getText( R.string.app_name ) ).setIcon( R.drawable.icon ).setView( t ).setCancelable( true );
+        AlertDialog.Builder dlg = new AlertDialog.Builder( this )
+                        .setTitle( getResources().getText( R.string.app_name ) )
+                        .setIcon( R.drawable.icon ).setView( t ).setCancelable( true );
         dlg.create().show();
     }
 
@@ -425,7 +435,8 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         @Override
         public void onResults( Bundle results ) {
 
-            ArrayList< String > strList = results.getStringArrayList( SpeechRecognizer.RESULTS_RECOGNITION ); // 音声認識結果を取得
+            ArrayList< String > strList = results
+                            .getStringArrayList( SpeechRecognizer.RESULTS_RECOGNITION ); // 音声認識結果を取得
             Log.d( TAG, "onResult Arraylist:" + strList );
 
             int result = SpeechAnalyzer.speechToSecond( strList ); // 音声認識結果から秒数値を取得する、この値をタイマーにセットする
@@ -481,46 +492,37 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
             tv.setText( showTime( 0 ) );
 
             switch ( error ) {
-                case SpeechRecognizer.ERROR_AUDIO: // このエラーが、どういうケースで発生するか、未確認
-                    break;
-
-                case SpeechRecognizer.ERROR_NO_MATCH: // このエラーが出ると、音声認識が停止してしまうので、再度
-                                                      // startListening
+                case SpeechRecognizer.ERROR_NO_MATCH: // このエラーが出ると、音声認識が停止してしまうので、再度startListening
                     // 音を出す
                     sensorcatch.start();
                     sensorcatch.setOnCompletionListener( new OnCompletionListener() {
 
                         public void onCompletion( MediaPlayer mp ) {
-                            // TODO Auto-generated method stub
-                            rec.startListening( RecognizerIntent.getVoiceDetailsIntent( getApplicationContext() ) );
+                            rec.startListening( RecognizerIntent
+                                            .getVoiceDetailsIntent( getApplicationContext() ) );
                         }
                     } );
                     break;
 
-                case SpeechRecognizer.ERROR_SPEECH_TIMEOUT: // かなり長い間放置すると発生する、対処は不要
+                case SpeechRecognizer.ERROR_SPEECH_TIMEOUT: // 長時間放置で発生、音声認識が停止するので再度startListening
+                    rec.startListening( RecognizerIntent
+                                    .getVoiceDetailsIntent( getApplicationContext() ) );
                     break;
 
                 case SpeechRecognizer.ERROR_NETWORK: // インターネットにつながっていない場合なので、Toastでメッセージを出し、アプリを終了
-                    Toast.makeText( UntouchableTimerActivity.this, getResources().getText( R.string.message_error_network ), Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( UntouchableTimerActivity.this,
+                                    getResources().getText( R.string.message_error_network ),
+                                    Toast.LENGTH_SHORT ).show();
                     finish();
                     break;
-
-                case SpeechRecognizer.ERROR_NETWORK_TIMEOUT: // このエラーが、どういうケースで発生するか、未確認
-                    break;
-
-                case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS: // このエラーが、どういうケースで発生するか、未確認
-                    break;
-
-                case SpeechRecognizer.ERROR_RECOGNIZER_BUSY: // このエラーが、どういうケースで発生するか、未確認
-                    break;
-
-                case SpeechRecognizer.ERROR_CLIENT: // なんであれエラーが出た場合には、このエラーも発生する、対処は不要
-                    break;
-
+                case SpeechRecognizer.ERROR_CLIENT: // 何らかのエラーが出た場合、このエラーも発生、対処不要
                 case SpeechRecognizer.ERROR_SERVER: // このエラーが、どういうケースで発生するか、未確認、ときどき発生する、対処は不要
+                case SpeechRecognizer.ERROR_AUDIO: // どういうケースで発生するか未確認、対処不要
+                case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS: // おそらく音声認識が許可されていない場合発生、対処不要
+                case SpeechRecognizer.ERROR_RECOGNIZER_BUSY: // おそらく音声認識サービスがビジーの場合発生、対処不要
+                case SpeechRecognizer.ERROR_NETWORK_TIMEOUT: // おそらくネットワークからレスポンスが帰ってこない場合発生、対処不要
+                default: // 発生しないはず
                     break;
-
-                default: // これは起こらないはず
             }
 
         }
@@ -532,27 +534,23 @@ public class UntouchableTimerActivity extends Activity implements SensorEventLis
         }
 
         @Override
-        public void onBufferReceived( byte[] arg0 ) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onEvent( int arg0, Bundle arg1 ) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
         public void onPartialResults( Bundle arg0 ) { // 認識途中の部分的な結果が必要な場合に使うが、基本的に実装不要
-            // TODO Auto-generated method stub
 
         }
 
         @Override
-        public void onRmsChanged( float arg0 ) {
-            // TODO Auto-generated method stub
+        public void onBufferReceived( byte[] buffer ) {
+            // 実装不要
+        }
 
+        @Override
+        public void onEvent( int eventType, Bundle params ) {
+            // 実装不要
+        }
+
+        @Override
+        public void onRmsChanged( float rmsdB ) {
+            // 実装不要
         }
 
     }

@@ -58,7 +58,8 @@ public class AlarmActivity extends Activity implements SensorEventListener {
         hasSensor = false;
 
         PowerManager pm = ( PowerManager ) getSystemService( Context.POWER_SERVICE );
-        wl = pm.newWakeLock( PowerManager.SCREEN_DIM_WAKE_LOCK + PowerManager.ON_AFTER_RELEASE, "My Tag" );
+        wl = pm.newWakeLock( PowerManager.SCREEN_DIM_WAKE_LOCK + PowerManager.ON_AFTER_RELEASE,
+                        "My Tag" );
         wl.acquire();
 
         vib = ( Vibrator ) getSystemService( VIBRATOR_SERVICE );
@@ -90,20 +91,18 @@ public class AlarmActivity extends Activity implements SensorEventListener {
         ringVolSeekBar.setProgress( ringVolume ); // 音量をSeekBarにセット
 
         ringVolSeekBar.setOnSeekBarChangeListener( new OnSeekBarChangeListener() {
+
             public void onProgressChanged( SeekBar seekBar, int progress, boolean fromUser ) {
-                // TODO Auto-generated method stub
                 ringVolText.setText( "Volume:" + progress ); // TextViewに設定値を表示
                 am.setStreamVolume( AudioManager.STREAM_MUSIC, progress, 0 ); // 着信音量設定
                 ringVolSeekBar.setProgress( progress ); // 音量をSeekBarにセット
             }
 
             public void onStartTrackingTouch( SeekBar seekBar ) {
-                // TODO Auto-generated method stub
 
             }
 
             public void onStopTrackingTouch( SeekBar seekBar ) {
-                // TODO Auto-generated method stub
 
             }
         } );
@@ -112,19 +111,22 @@ public class AlarmActivity extends Activity implements SensorEventListener {
         if ( sensors.size() > 0 ) {
             // センサーリスナー開始
             Sensor sensor = sensors.get( 0 );
-            hasSensor = sensorMgr.registerListener( this, sensor, SensorManager.SENSOR_DELAY_NORMAL );
+            hasSensor = sensorMgr
+                            .registerListener( this, sensor, SensorManager.SENSOR_DELAY_NORMAL );
         }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences( this );
-        pref_sound = prefs.getString( ( String ) getResources().getText( R.string.pref_key_sound ), "" );
+        pref_sound = prefs.getString( ( String ) getResources().getText( R.string.pref_key_sound ),
+                        "" );
         if ( pref_sound == null )
             pref_sound = "1";
         else if ( pref_sound.equals( "" ) )
             pref_sound = "1";
-        String[] sounds = getResources().getStringArray( R.array.entries );
+//        String[] sounds = getResources().getStringArray( R.array.entries );
 
-        String selected_sound = sounds[ Integer.parseInt( pref_sound ) - 1 ];
-        pref_vibrator = prefs.getBoolean( ( String ) getResources().getText( R.string.pref_key_vibrator ), true );
+//        String selected_sound = sounds[ Integer.parseInt( pref_sound ) - 1 ];
+        pref_vibrator = prefs.getBoolean(
+                        ( String ) getResources().getText( R.string.pref_key_vibrator ), true );
 
         switch ( Integer.valueOf( pref_sound ).intValue() ) {
             case 1:
@@ -175,7 +177,6 @@ public class AlarmActivity extends Activity implements SensorEventListener {
 
     @Override
     protected void onDestroy() {
-        // TODO Auto-generated method stub
         super.onDestroy();
 
         // センサーリスナー終了
@@ -187,13 +188,11 @@ public class AlarmActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged( Sensor arg0, int arg1 ) {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void onSensorChanged( SensorEvent event ) {
-        // TODO Auto-generated method stub
         if ( event.sensor.getType() == Sensor.TYPE_PROXIMITY ) {
             if ( event.values[ 0 ] < 1.0 ) // 近接センサーで「近い」
             {
